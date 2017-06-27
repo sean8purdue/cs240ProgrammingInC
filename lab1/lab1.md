@@ -10,6 +10,14 @@ The objective of this introductory lab is to familiarize you with the system env
 
 Read chapter 1 from Kernighan&Ritchie (textbook). The introduction provides an overview of C programming. It is a bit dense. You are not expected to understand all the material. What you need to understand is the material discussed in class, with the textbook serving as a supplementary resource.
 
+## Lecture Notes
+
+- What is CS 240 about? ([lec1] [lec1])
+- C programs and their system environment (see class notes) (additional reference: [lec2][lec2])
+	- C code and machine code ([pdf][machineCode])
+	- Roles of C compiler, C preprocessor, assembler, linker, loader
+	- Reading and writing to standard I/O
+
 ## Lab1 code base
 
 The C code base for lab1 is available as a tarball at 

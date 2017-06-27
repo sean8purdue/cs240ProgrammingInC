@@ -18,6 +18,10 @@ Read chapter 1 from Kernighan&Ritchie (textbook). The introduction provides an o
 	- Roles of C compiler, C preprocessor, assembler, linker, loader
 	- Reading and writing to standard I/O
 
+[lec1]:https://github.com/sean8purdue/cs240ProgrammingInC/blob/lab1/lab1/cs240crisn1.pdf
+[lec2]:https://github.com/sean8purdue/cs240ProgrammingInC/blob/lab1/lab1/cs240crisn2.pdf
+[machineCode]:https://github.com/sean8purdue/cs240ProgrammingInC/blob/lab1/lab1/cs240-park1.pdf
+
 ## Lab1 code base
 
 The C code base for lab1 is available as a tarball at 

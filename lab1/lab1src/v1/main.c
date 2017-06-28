@@ -3,7 +3,7 @@
 //   	or, simply: z = x + y
 
 /*int main()*/
-main()
+void main()
 {
 int x, y, z;
 

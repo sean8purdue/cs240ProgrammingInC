@@ -58,11 +58,24 @@ How does gcc react if you omit the type declaration of main()? Will gcc generate
 
 - If omit the type declaration of main(), gcc will give warning when compile. But still generate **a.out** file.
 
-~~~c
+~~~bash
 main.c:6:1: warning: type specifier missing, defaults to 'int'
       [-Wimplicit-int]
 main()
 ^
 ~~~
 
-- 
+- Delcare main() type as void, gcc warn:
+
+~~~bash
+main.c:6:1: warning: return type of 'main' is not 'int'
+      [-Wmain-return-type]
+void main()
+^
+main.c:6:1: note: change return type to 'int'
+void main()
+^~~~
+int
+1 warning generated.
+
+~~~

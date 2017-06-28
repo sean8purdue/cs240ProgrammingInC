@@ -6,14 +6,18 @@
 
 #include <stdio.h>
 
-main()
+int main()
 {
 int x, y, z;
 
-// read input
-  scanf("%d %d",&x,&y);
+// original,  read input
+  /*scanf("%d %d",&x,&y);*/
+
+// Problem 3.2 removing two ampersands
+  scanf("%d %d",x,y);
 
 // compute subtraction
+
   z = x + y;
 
 // print result

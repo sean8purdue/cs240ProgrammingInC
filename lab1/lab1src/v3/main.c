@@ -13,6 +13,7 @@ int x, y, z;
 // original,  read input
   /*scanf("%d %d",&x,&y);*/
 
+printf("%d\n", x);
 // Problem 3.2 removing two ampersands
   scanf("%d %d",x,y);
 

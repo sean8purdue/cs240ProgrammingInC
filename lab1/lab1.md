@@ -132,6 +132,7 @@ incorrect? Compile the code as is, and run it to verify that it works correctly.
 [1]    26574 segmentation fault  ./a.out
 	~~~
 	
+	print the initial value of x, in this runtime, x is 1.
 5. s
 
 

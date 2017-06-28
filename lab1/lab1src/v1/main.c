@@ -2,7 +2,8 @@
 // 	and stores the result in z
 //   	or, simply: z = x + y
 
-int main()
+/*int main()*/
+main()
 {
 int x, y, z;
 

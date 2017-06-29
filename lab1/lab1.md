@@ -157,3 +157,30 @@ Why does printf() in v3/main.c not use ampersand & before the variables x, y, z?
 3
 3 plus 1358031336 = 5
 	~~~
+
+### Problem5 (40 pts)
+
+v4 contains a floating point (i.e., real number) variation of v3. Compile and test with real numbers (say, 7.111 and 4.222) to check that it works correctly. In v5, the code is made more modular by implementing the addition part of the app code as a separate function, myadd(). Since myadd() is essentially a one-liner, the separation doesn't buy much in terms of clean design. However, the principle is clear: if the calculations were more involved, putting the instructions in a separate function makes the design more modular. myadd() takes the values to be added as its two arguments and returns the result to the calling function. Hence the caller is main() and the callee is myadd(). When passing the two arguments to myadd(), why do we not use ampersands, that is, myadd(&x,&y)? 
+
+1. Because we want to pass by value, want the value of x, and y. Not the address.
+
+Suppose instead of communicating to the caller the subtraction result using a function return, we want the callee to directly update the variable z in main() with the computed result. One way to do it is to change 
+
+`z = myadd(x,y); `
+
+to 
+
+`myadd(x,y,&z); `
+
+Why does adding &z as the third argument of myadd() enable the callee to update the value of variable z which belongs to main()? If this method of communicating between caller and callee is employed, C requires that the code of the callee be updated as follows: 
+
+~~~
+int myadd(float a, float b, float *c) { 
+   *c = a + b; 
+} 
+~~~
+
+The * symbol preceding argument c in the callee specifies that c contains an address (not value). Thus we are telling the callee myadd() where in RAM (i.e., memory) z is located, i.e., its address. Since the callee has this information, it can now, if it wants to, go to the address and update the content at that address. This is done by prepending c with * and performing the addition *c = a + b, instead of c = a + b. Make the modifications and compile the updated main.c. What does gcc say? What additional modification do we need to make to have a correct code? Figure it out on your own and if you get stuck the TAs will help. Since myadd() does not return a value, what type declaration can we assign myadd() to reflect/highlight this feature? Compile the updated code and test that it runs correctly.
+
+2. Question: Why let myadd() return int?
+

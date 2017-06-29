@@ -184,3 +184,24 @@ The * symbol preceding argument c in the callee specifies that c contains an add
 
 2. Question: Why let myadd() return int?
 
+### Problem6 (15 pts)
+
+Describe what the modification performed in v6 is. How should the code of v6 be compiled? What final modification is carried out in v7? Explain what the difference between 
+
+`#include "mydecl.h" `
+
+and 
+
+`#include <mydecl.h> `
+
+is. What happens if you replace by angle brackets of stdio.h by double quotes? What happens if you replace the double quotes of mydecl.h by angle brackets?
+
+1. Put myadd() function in seperate file, use `gcc main.c myadd.c` to compile.
+
+2. In v7, use `#include "myheader.h" `, instead of ` float myadd(float, float);` to declare in the begnining of the file.
+
+### Bonus Problem (15 pts)
+
+Modify the version in v5 so that all arguments are passed as pointers. Explain the changes you are making in myadd().
+
+1. If we pass all arguments by pointers, then in the callee myadd(), it can change the original values of caller main().

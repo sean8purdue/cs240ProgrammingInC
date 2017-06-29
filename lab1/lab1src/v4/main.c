@@ -4,9 +4,8 @@
 
 #include <stdio.h>
 
-main()
-{
-float x, y, z;
+int main() {
+    float x, y, z;
 
 // read input
   scanf("%f %f",&x,&y);

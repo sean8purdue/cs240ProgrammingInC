@@ -133,7 +133,27 @@ incorrect? Compile the code as is, and run it to verify that it works correctly.
 	~~~
 	
 	print the initial value of x, in this runtime, x is 1.
-5. s
 
+### Problem4 (20 pts)
 
+Why does printf() in v3/main.c not use ampersand & before the variables x, y, z? What happens if you add & before the three local variables? Explain what gcc does and what happens when you execute the executable produced by gcc.
 
+1. printf() pass arguments by value, not by address. So, there is no need to use ampersand before the variables.
+
+2. It will give a warning when compile. But still generate executable file a.out. 
+
+	~~~c
+	main.c:25:34: warning: format specifies type 'int' but the argument
+      has type 'int *' [-Wformat]
+  printf("%d plus %d = %d\n", x, &y, z);
+                  ~~             ^~
+1 warning generated.
+	~~~
+3. When you execute a.out, it will get the address of y, instead of the value of y.
+
+	~~~
+	➜  v3 git:(lab1) ✗ ./a.out
+3 2
+3
+3 plus 1358031336 = 5
+	~~~

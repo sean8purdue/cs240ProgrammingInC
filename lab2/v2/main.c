@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-void main()
+int main()
 {
 int s;
 void changeval1(int);

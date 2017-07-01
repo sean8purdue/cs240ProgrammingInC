@@ -9,6 +9,7 @@ The objective of this lab is to practice using pointers as they are commonly use
 ## <span id="menu">Questions</span>
 
 * [Q1](#1): If you don't like the filename a.out for the executable, what are two methods for changing it to a different name?
+* [L2](#2): Debug skill in c `#define MYDEBUG`
 
 ## Bugs
 
@@ -90,7 +91,7 @@ Explain why after calling changeval() in v3 the value of x printed on stdout cha
 	
 	The value of x in main will not be changed. And there is a potential bug here, since we change the variable of a to 3, the address 3 is usually not belong to our program. If we try to dereference *a, the program will crash.
 
-### Problem4 (15)
+### Problem4 (15 pts)
 
 Modify the code in v3 so that the function changeval() is placed in a separate file changeval.c. Put the declaration of the function in main() in a separate header file main.h. Verify that everything works as it should by (1) compiling the two .c files separately using the -c option, (2) running gcc on the resultant .o files, and (3) executing a.out.
 
@@ -103,7 +104,7 @@ If you don't like the filename a.out for the executable, what are two methods fo
 
 or after compile a.out, use `mv a.out changeval`
 
-### Problem5 (30)
+### Problem5 (30 pts)
 Compile and run the code in v4. Explain the output produced by the program. Suppose we add the assignment "z = &y" to the end of main(). How must z be declared in the program? How do we print the value of x using z? Make the changes to main.c and submit the revised code after checking that it compiles and runs correctly.
 
 1. We declare an int variabel x, and pointer variable *y, which contents an address and point to an int. We print the value of x:5, and the address of x, `&x = 0x7fff513ce9fc`. 
@@ -113,3 +114,18 @@ Compile and run the code in v4. Explain the output produced by the program. Supp
 2. Declare `int **z = &y;`[BackJump](#menu)
 
 	Since **z point to an int. If we use `int *z = &y`, that means following the address of y, we can get an int in this address. But in our case, we have to follow the address of y, in this address, we get an content (`*y` still an address), and then follow this content, we get an int. 
+	
+### Problem6 (20 pts)
+Compile and execute the code in v6. What is the meaning of segmentation fault? What causes the fault to arise in main() when executing a.out?
+
+1. Segmentation faults are caused by a program trying to read or write an illegal memory location. 
+2. But is in line 27, in changeval(int *), the argument is a ponter point to int. Here x = 5, we call `changeval(x);` will try to change the value in address 5, which is not belong to our running process, will cause segfault.
+
+~~~c
+#define MYDEBUG
+
+#ifdef MYDEBUG
+printf("ok 1\n");
+#endif
+~~~
+This debug style, if we comment out `#define MYDEBUG`, all debug statements below will be removed(not add to source code, same as removed). [BackJump](#menu) <h3 id="2"></h3>

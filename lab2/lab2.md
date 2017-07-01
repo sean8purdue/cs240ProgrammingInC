@@ -6,9 +6,14 @@ Due: 06/27/2017 (Tue), 11:59 PM
 
 The objective of this lab is to practice using pointers as they are commonly used in passing by reference and manipulation of 1-D arrays.
 
-## Questions
+## <span id="menu">Questions</span>
 
 * [Q1](#1): If you don't like the filename a.out for the executable, what are two methods for changing it to a different name?
+
+## Bugs
+
+* [B1](#1): Declare `int **z = &y`
+
 
 ## Reading
 
@@ -89,7 +94,8 @@ Explain why after calling changeval() in v3 the value of x printed on stdout cha
 
 Modify the code in v3 so that the function changeval() is placed in a separate file changeval.c. Put the declaration of the function in main() in a separate header file main.h. Verify that everything works as it should by (1) compiling the two .c files separately using the -c option, (2) running gcc on the resultant .o files, and (3) executing a.out.
 
-If you don't like the filename a.out for the executable, what are two methods for changing it to a different name?
+If you don't like the filename a.out for the executable, what are two methods for changing it to a different name? [BackJump](#menu)
+
 
 <h3 id="1"></h3>
 
@@ -98,3 +104,12 @@ If you don't like the filename a.out for the executable, what are two methods fo
 or after compile a.out, use `mv a.out changeval`
 
 ### Problem5 (30)
+Compile and run the code in v4. Explain the output produced by the program. Suppose we add the assignment "z = &y" to the end of main(). How must z be declared in the program? How do we print the value of x using z? Make the changes to main.c and submit the revised code after checking that it compiles and runs correctly.
+
+1. We declare an int variabel x, and pointer variable *y, which contents an address and point to an int. We print the value of x:5, and the address of x, `&x = 0x7fff513ce9fc`. 
+
+	Then assign &x to y, then `y = &x = 0x7fff513ce9fc`. Then dereference `*y = 5`. Dereference means following the address 0x7fff513ce9fc, get the value in this address, which is 5.
+	
+2. Declare `int **z = &y;`[BackJump](#menu)
+
+	Since **z point to an int. If we use `int *z = &y`, that means following the address of y, we can get an int in this address. But in our case, we have to follow the address of y, in this address, we get an content (`*y` still an address), and then follow this content, we get an int. 

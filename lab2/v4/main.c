@@ -3,17 +3,24 @@
 
 #include <stdio.h>
 
-int main()
-{
-int x;
-int *y;
+int main() {
+    int x;
+    int *y;
 
-  x = 5;
-  printf("%d\n",x);
-  printf("%p\n",&x);
+    x = 5;
+    printf("x = %d\n",x);
+    printf("&x = %p\n",&x);
+    printf("\n");
 
-  y = &x;
-  printf("%d\n",*y);
-  printf("%p\n",y);
+    y = &x;
+    printf("*y = %d\n",*y);
+    printf("y = %p\n",y);
+    printf("&y = %p\n",&y);
+    printf("\n");
 
+    int **z;
+    z = &y;
+    printf("z =  &y = %p\n", z);
+    printf("*z = y = %p\n", *z);
+    printf("**z = %d\n",**z);
 }

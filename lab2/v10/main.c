@@ -1,6 +1,7 @@
 // Basic string processing.
 
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
@@ -15,5 +16,14 @@ char a[6];
   a[5] = '\0';
 
   printf("%s\n",a);
+
+  //strcpy()
+  strcpy(a, "abcde");
+  printf("%s\n",a);
+
+  // try to store "abcdef" in a[6], seg fault
+  /*strcpy(a, "abcdef");*/
+  /*printf("%s\n",a);*/
+  
 
 }

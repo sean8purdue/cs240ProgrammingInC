@@ -155,3 +155,63 @@ int *h;
 ```
 
 Because we just declare a interger pointer h, but we don't allocate memory for it. In above case, h point to a garbage address `h = 0x10a963036`, which is not belong to our process, it will cause segmentation fault.
+
+### Problem 9 (40 pts)
+What is the silent (or hidden) run-time error in v9? What programming practice reduces the likelihood of introducing such run-time bugs? What happens if you change the limit of the third for-loop from 6 to 7? What happens if you run gcc with option `-fno-stack-protector`? Explain what is going on.
+
+1. The hidden run-time error is the array is out of bound, we allocate 5 array elements, but we write to the 6th element which is not defined. In C, if you try to access one more element than allocated, gcc will not warn you, but this will cause a hidden run-time error, the result is not defined.
+
+2. define a len variable, `sizeof(array) / sizeof(array[0])`
+
+	```c
+	2.1 int len = sizeof(array) / sizeof(array[0])
+	
+	2.2 #define NELEMS(x)  (sizeof(x) / sizeof((x)[0]))
+
+		int a[17];
+		int len = NELEMS(a);
+	```
+
+3. If we change the limit of the third for-loop from 6 to 7, when we run the program, it will cause seg fault.
+
+4. If we run `gcc -fno-stack-protector main.c`, we can continue to write the array even out of array limit. gcc will not protect stack smashing. In the following case, 5 and 6 is out of array limit.
+
+	```
+	➜  v9 git:(lab2) ✗ ./a.out
+	0
+	1
+	2
+	3
+	4
+
+	0
+	1
+	2
+	3
+	4
+	5
+	6
+	```
+
+### Problem 10 (15 pts)
+What does the layout of character array a[6] in v10 look like in memory? Use the string processing library function strcpy() (check its usage using man) to assign the string "abcde" to a[6] and print its value. Can a[6] be used to store the string "abcdef"? Explain.
+
+1. The character array a[6] is placed in contiguous memory, each character is 1 byte.
+
+2. a[6] can't store string "abcdef", because string "abcedf" is actually "abcdef\0", with '\0' as string end. So "abcdef\0" is 7 characters. But a[6] just have 6 elements.
+
+### Bonus Problem (20 pts)
+The BUGS section of strcpy()'s man pages warns against a potential bug of using strcpy() incorrectly. How is this related to the silent run-time error of Problem 9?
+
+Linux Manual:
+BUGS
+       If the destination string of a strcpy() is not large enough, then  any-
+       thing  might  happen.   Overflowing  fixed-length  string  buffers is a
+       favorite cracker technique for taking complete control of the  machine.
+       Any  time  a  program  reads  or copies data into a buffer, the program
+       first needs to check that there's enough space.  This may  be  unneces-
+       sary  if you can show that overflow is impossible, but be careful: pro-
+       grams can get changed over time, in ways that may make  the  impossible
+       possible.
+       
+This bug is try to overflow fixed-length string buffers(character arrays), in v9, we also try to overflow a fixed-size inter array. That will also can cause stack smashing, revised the caller's return address by overflow the fixed-size array.

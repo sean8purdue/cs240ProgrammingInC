@@ -129,3 +129,16 @@ printf("ok 1\n");
 #endif
 ~~~
 This debug style, if we comment out `#define MYDEBUG`, all debug statements below will be removed(not add to source code, same as removed). [BackJump](#menu) <h3 id="2"></h3>
+
+### Problem7 (20 pts)
+Describe how the 1-D integer array s[3] in v7 is laid out in main memory (i.e., RAM).
+
+```
+➜  v7 git:(lab2) ✗ ./a.out
+10 at 0x7fff5d61d9ec
+20 at 0x7fff5d61d9f0
+30 at 0x7fff5d61d9f4
+```
+
+The 1-D array is placed in contiguous memory, each interger is 4 bytes. In above case, the first int at d9ec, d9ec+4=d9f0, d9f0+4=d9f4.
+

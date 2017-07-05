@@ -10,9 +10,9 @@ int s[3];
   s[1] = 20;
   s[2] = 30;
 
-  printf("%d\n",s[0]);
-  printf("%d\n",s[1]);
-  printf("%d\n",s[2]);
+  printf("%d at %p\n",s[0], &s[0]);
+  printf("%d at %p\n",s[1], &s[1]);
+  printf("%d at %p\n",s[2], &s[2]);
 
   printf("%d\n",*s);
   printf("%d\n",*(s+1));

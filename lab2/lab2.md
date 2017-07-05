@@ -142,3 +142,16 @@ Describe how the 1-D integer array s[3] in v7 is laid out in main memory (i.e., 
 
 The 1-D array is placed in contiguous memory, each interger is 4 bytes. In above case, the first int at d9ec, d9ec+4=d9f0, d9f0+4=d9f4.
 
+### Problem8 (15 pts)
+Why does compiling and running the program in v8 result in segmentation fault? Make changes to main.c so that a segmentation fault does not arise. Submit the revised code of v8.
+
+```c
+int *h;
+*h = 100;
+
+➜  v8 git:(lab2) ✗ ./a.out
+&h = 0x7fff559839f8, h = 0x10a963036
+[1]    2498 bus error  ./a.out
+```
+
+Because we just declare a interger pointer h, but we don't allocate memory for it. In above case, h point to a garbage address `h = 0x10a963036`, which is not belong to our process, it will cause segmentation fault.

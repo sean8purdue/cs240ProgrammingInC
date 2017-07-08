@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MYDEBUG
+
 int main() {
     FILE *fp, *fpw;
+    int N = 5;
 
     // open file to read
     if ( (fp = fopen("test.dat", "r")) == NULL ) {
@@ -20,6 +23,23 @@ int main() {
     // read data
     char c;
     while ( (c = fgetc(fp)) != EOF) {
+
+#ifdef MYDEBUG
+        printf("%d ->  ", c);
+        /*c = c % 128;*/
+        c = (c + N) % 128;
+        printf("%d\n", c);
+#endif
+        //encrypt
+        c = (c + N) % 128;
         putc(c, fpw);
     }
+    putc('\n', fpw);
+
+/*#ifdef MYDEBUG*/
+        /*printf("%d ->  ", c);*/
+/*#endif*/
+
+    fclose(fp);
+    fclose(fpw);
 }

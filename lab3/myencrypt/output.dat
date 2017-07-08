@@ -1,12 +1,1 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-int main() {
-    FILE *fp;
-
-    if ( (fp = fopen("test.dat", "r")) == NULL ) {
-        fprintf(stderr, "file test.dat does not exist\n");
-        exit(1);
-    }
-}
-
+-sxmvno*F}~nsy8rH-sxmvno*F}~nvsl8rHsx~*wksx23*****PSVO*4pzE****sp*2*2pz*G*pyzox2,~o}~8nk~,6*,|,33*GG*X_VV*3*********pz|sx~p2}~no||6*,psvo*~o}~8nk~*nyo}*xy~*os}~fx,3E********os~2;3E****

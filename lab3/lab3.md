@@ -74,11 +74,11 @@ where N is an integer (positive or negative), filename1 is the name of the file 
 
 -N filename2 filename1 
 
-The main issue to consider is that 7-bit ASCII ranges from 0 to 127. For example, if the input character is '}' (value 125) and we add 5, we get 130 which exceeds the 7-bit ASCII range. To map '}' to 0--127, we will perform wrap-around so that 130 gets interpreted as value 2 (ASCII symbol start of text). This is tantamount to performing addition modulo 128. In a similar vein, when subtraction is carried out and the resultant value becomes negative, we have to perform wrap-around to map it back to 7-bit ASCII. 
+**The main issue to consider is that 7-bit ASCII ranges from 0 to 127**. For example, if the input character is '}' (value 125) and we add 5, we get 130 which exceeds the 7-bit ASCII range. To map '}' to 0--127, we will perform wrap-around so that 130 gets interpreted as value 2 (ASCII symbol start of text). **This is tantamount to performing addition modulo 128.** In a similar vein, when subtraction is carried out and the resultant value becomes negative, we have to perform wrap-around to map it back to 7-bit ASCII. 
 
 At the top of the main.c file, add a description of how you go about implementing the wrap-around. Put all your functions into main.c. Test using ASCII text files (e.g., C programs) that myencrypt works correctly.
 
-1 getchar and putchar on file  
+1, getchar and putchar on file  
 
 ```c
 #include <stdio.h>
@@ -96,6 +96,16 @@ int putchar(int c);
 // This problem
 while ( (c = fgetc(fp)) != EOF) { putc(c, fpw); }
 ```
+
+2, modulo  
+If you want the range from `0 to 127`, you have to use 128.
+
+```
+0 % 128 -> 0
+1 % 128 = 1
+127 % 128  -> 127
+128 % 128 -> 0
+``` 
 
 
 

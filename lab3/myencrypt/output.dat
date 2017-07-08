@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *fp;
+
+    if ( (fp = fopen("test.dat", "r")) == NULL ) {
+        fprintf(stderr, "file test.dat does not exist\n");
+        exit(1);
+    }
+}
+

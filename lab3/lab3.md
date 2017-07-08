@@ -35,5 +35,22 @@ signed char     1 byte
 
 unsigned int    4 bytes
 singed int      4 bytes
+```
+
+### Problem 2 (50 pts)
+
+1. Assign statement has value: An assignment expression has the value of the **left operand** after the assignment
+
+```c
+	char c;
+    while ( (c = getchar()) != '\n' ) 
+    c = getchar() \\ the assign statement value is char c
+
+```
+
+```c
+        if ( (c >= 65) && (c <= 90) ) {
+can't write as:
+			if ( 65 <= c <= 90)
 
 ```

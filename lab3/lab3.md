@@ -1,6 +1,11 @@
 # Lab 3: Programming using pointers, arrays, and strings (220 pts)
 Due: 07/05/2017 (Wed), 11:59 PM
 
+## Question
+1. How to read a filename to a string?   
+	If we declare string as `char *filename`, then we can't use `scanf("%s", filename), because filename don't have memory allocated.
+	We can use fixed-sized char array to do this, but what the best thing to do this?
+
 ## Reading 
 Read chapters 4 and 5 from K&R (textbook).
 

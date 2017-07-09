@@ -6,6 +6,29 @@ Due: 07/05/2017 (Wed), 11:59 PM
 	If we declare string as `char *filename`, then we can't use `scanf("%s", filename), because filename don't have memory allocated.
 	We can use fixed-sized char array to do this, but what the best thing to do this?
 
+2. Use a square root function in math libary by including math.h and linking with the "-lm" option when running gcc.  
+	Since `math.h` is just header file, just declare the square root function, the acutall code you need link with "-lm".
+
+## Bugs
+1. `While (i++ > size)`, will skip x[0], start from x[1]. After `While (i++ > size)`, i will be 1. 
+	
+	```c
+	 Wrong!!!!!!!
+	 int i = 0;
+	 while (i++ < *size) {
+        scanf("%f", (x+i));
+        printf("%f\n", *(x+i));
+    }
+    
+    Correct
+     while (i < *size) {
+        scanf("%f", (x+i));
+        printf("%f\n", *(x+i));
+        i++;
+    }
+    
+	```
+
 ## Reading 
 Read chapters 4 and 5 from K&R (textbook).
 
@@ -154,6 +177,8 @@ From the viewpoint of app programming, coding is straightforward. However, as an
 	 
 - Put each of the three function in separate files main.c, read_vectors.c, calc_dotmag.c.   
 	Create a Makefile that compiles each C source file individually to generate object files which are then linked to generate an executable file named dotmag.exe. Make sure to set up the dependencies correctly. Code, compile, debug, and test that your app works correctly. Testing should include the case where user input is ill-formed. Make sure to comment your code. Deposit your source code (*.c and *.h) files and Makefile in dotmagcode/.
+	
+1, use a square root function in math libary by including math.h and linking with the "-lm" option when running gcc. 
 
 ### Bonus Problem (20 pts)
 

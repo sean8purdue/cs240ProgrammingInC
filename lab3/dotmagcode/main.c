@@ -6,7 +6,10 @@ int main() {
     float x[MAXSIZE];
     float y[MAXSIZE];
 
-    read_vectors(&size, x, y);
+    if (read_vectors(&size, x, y) == -1) {
+            fprintf(stderr,"Input not recognised as a float, please try again.\n");
+            return -1;
+    }
 
     // test for read_vectors
     printf("%d\n", size);

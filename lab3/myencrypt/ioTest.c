@@ -26,4 +26,8 @@ int main() {
     printf("check last character: %c\n", out[26]);
     // array out of bound
     /*printf("check last character: %c\n", out[27]);*/
+
+    /*while ( scanf("%3c", filename1) == 1 ){*/
+        /*printf("scanf overflow\n");*/
+    /*}*/
 }

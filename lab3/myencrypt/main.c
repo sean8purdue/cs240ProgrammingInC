@@ -9,7 +9,9 @@ int main() {
     char filename1[MAXNAME];
     char filename2[MAXNAME];
 
-    scanf("%d %s %s", &N, filename1, filename2);
+    /*scanf("%d %s %s", &N, filename1, filename2);*/
+    scanf("%d %99s %s", &N, filename1, filename2);
+    printf("%99s", filename1);
     /*printf("%s %s\n", filename1, filename2);*/
 
     // open file to read

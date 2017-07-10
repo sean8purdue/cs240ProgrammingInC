@@ -28,6 +28,18 @@ Due: 07/05/2017 (Wed), 11:59 PM
     }
     
 	```
+2\. `printf( "start from 5, print offset 6: %.6s\n", out[5] );`  
+ compile error: out[5] is a charcater
+
+	```c
+    // get the address of the fifth character, 
+    // start from that address, print the string
+    printf( "start from 5, print offset 6: %.6s\n", &out[5] );  
+    // prints three characters of the string 
+    // that starts at offset 13
+	```
+
+
 
 ## Reading 
 Read chapters 4 and 5 from K&R (textbook).

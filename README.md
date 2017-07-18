@@ -49,3 +49,9 @@ The objective of this introductory lab is to familiarize you with the system env
 ### Lab2 Pointers, passing by value vs. reference, and 1-D arrays (205 pts)
 
 The objective of this lab is to practice using pointers as they are commonly used in passing by reference and manipulation of 1-D arrays.
+
+### Lab3 Programming using pointers, arrays, and strings
+
+Practice pointers, arrays, strings and Makefile
+
+

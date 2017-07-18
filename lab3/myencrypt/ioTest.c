@@ -27,6 +27,7 @@ int main() {
     // array out of bound
     /*printf("check last character: %c\n", out[27]);*/
 
+    // use fgets(&buf, FiexedNumber, filename) to read fixed number characters
     /*while ( scanf("%3c", filename1) == 1 ){*/
         /*printf("scanf overflow\n");*/
     /*}*/

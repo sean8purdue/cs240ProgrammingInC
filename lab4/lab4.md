@@ -22,6 +22,10 @@ When we use printf and the begining address of url to print string. If the first
         } else {
 ```
 
+## Questions
+### Q1. Best ways to parse url and detech ill format header.
+Part3.A.2
+
 ## Objective 
 The objective of this lab is to practice parsing input viewed as bits and strings. We will also employ system utilities commonly used with C programs such as archives for static linking and system() to execute legacy binaries from within an app.
 

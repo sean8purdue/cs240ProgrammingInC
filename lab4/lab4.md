@@ -1,6 +1,26 @@
 # Lab 4: Parsing bits and strings, static libraries, and system() (200 pts)
 Due: 07/12/2017 (Wed), 11:59 PM
 
+## Bug
+
+### b1: in part3.A.2
+
+```c
+if ( (c >= 65) && (c <= 90) ) { //Upper to lower
+    c = c + 32;
+    url[i] = c;
+```
+If we put `url[i]` inside the loop, the character c will only be added to url[] when it's upper case!!
+
+When we use printf and the begining address of url to print string. If the first location of url is empty, we can't print anything, even there are some characters in the following locations. Correct is belowing:
+
+```c
+        if (i < (MAXSIZE - 1) ) {
+            //Upper to lower
+            if ( (c >= 65) && (c <= 90) ) { c = c + 32; }
+            url[i] = c;
+        } else {
+```
 
 ## Objective 
 The objective of this lab is to practice parsing input viewed as bits and strings. We will also employ system utilities commonly used with C programs such as archives for static linking and system() to execute legacy binaries from within an app.

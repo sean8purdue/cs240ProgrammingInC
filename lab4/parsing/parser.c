@@ -9,7 +9,12 @@ int main() {
     char c;
     while ( (c = getchar()) != '\n' ) {
         if (i < (MAXSIZE - 1) ) {
-            url[i] = c;
+
+            if ( (c >= 65) && (c <= 90) ) { //Upper to lower
+                c = c + 32;
+                url[i] = c;
+            }
+
         } else {
             printf("url should less than %d\n", MAXSIZE);
             return 1;

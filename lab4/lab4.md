@@ -29,7 +29,17 @@ and similarly for calc_diff.o. The option r inserts an object file into the arch
 
 
 
-### Problem 2 (50 pts)
+### Problem 2 Unsigned Char & Hex output (50 pts)
+
+Char and Unsigned char are both 1 byte. 
+
+`signed char`, which gives you at least the -127 to 127 range. (-128 to 127 is common), two's complement.
+
+`unsigned char`,  which gives you at least the 0 to 255 range.
+
+`unsigned char -5`, 5 in one's complement is `0000 0101`, flip to `1111 1010`, plus 1 to `1111 1011`, which is `-5` in two's complent.
+
+If we treat `1111 1011` as unsgined, that is `2^7 + 2^6 + 2^5+ 2^4 + 2^3 + 2^2 + 1 = 251`.
 
 ### Problem 3 (80 pts)
 

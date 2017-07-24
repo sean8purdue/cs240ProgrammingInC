@@ -33,13 +33,24 @@ and similarly for calc_diff.o. The option r inserts an object file into the arch
 
 Char and Unsigned char are both 1 byte. 
 
-`signed char`, which gives you at least the -127 to 127 range. (-128 to 127 is common), two's complement.
+`signed char`, which gives you at least the -128 to 127 range. two's complement.
 
 `unsigned char`,  which gives you at least the 0 to 255 range.
 
 `unsigned char -5`, 5 in one's complement is `0000 0101`, flip to `1111 1010`, plus 1 to `1111 1011`, which is `-5` in two's complent.
 
 If we treat `1111 1011` as unsgined, that is `2^7 + 2^6 + 2^5+ 2^4 + 2^3 + 2^2 + 1 = 251`.
+
+Consider an 8 bit signed integer: let us begin with 0 0 0 0 0 0 0 02 and start counting by repeatedly adding 1:
+
+When you get to 127, the integer has a value of `0 1 1 1 1 1 1 1 <sub>2</sub>; this is easy to see because you know now that a 7 bit integer can contain a value between 0 and 27 - 1, or 127. What happens when we add 1?
+
+If the integer were unsigned, the next value would be 1 0 0 0 0 0 0 02, or 128 (27). But since this is a signed integer, 1 0 0 0 0 0 0 02 is a negative value: the sign bit is 1!
+Since this is the case, we must ask the question: what is the decimal value corresponding to the signed integer
+1 0 0 0 0 0 0 02? To answer this question, we must take the 2's complement of that value, by first taking the 1's complement and then adding one.
+
+The 1's complement is 0 1 1 1 1 1 1 12, or decimal 127. Since we must now add 1 to that, our conclusion is that the signed integer 1 0 0 0 0 0 0 02 must be equivalent to decimal -128!
+
 
 ### Problem 3 (80 pts)
 

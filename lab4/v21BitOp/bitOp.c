@@ -24,4 +24,20 @@ int main() {
         in = in >> 4;
     }
 
+    // Problem 2 part 2: largest unsigned value
+    unsigned int max;
+    max = 0xFFFFFFFF;
+    printf("%u, %x\n", max, max);
+    // 2^32 = 4294967296
+    // print 4294967295, ffffffff
+
+    for (int i = 0; i < 8; i++) {
+        out = max & m;
+        printf("%u, %x\n", out, out);
+
+        max = max >> 4;
+    }
+
+
+
 }

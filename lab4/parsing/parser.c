@@ -2,19 +2,20 @@
 #include <stdlib.h> // exit
 #include <string.h> // strlen
 
-#ifdef __linux__
-    #include <sys/socket.h> /* socket, connect */
-    #include <netdb.h> /* struct hostent, gethostbyname */
-    #include <netinet/in.h> /* struct sockaddr_in, struct sockaddr */
-#elif _WIN32
-    #include <winsock2.h>
-    #include <ws2tcpip.h>
-    #include <windows.h>
-    #pragma comment(lib,"ws2_32.lib") //Winsock Library
+#ifdef __APPLE__
+#define SYS 1
+
+#elif __unix__
+#define SYS 3
+
+#elif __linux__
+#define SYS 5
 
 #else
+#define SYS 2
 
 #endif
+
 
 #define MAXSIZE 300
 
@@ -22,6 +23,9 @@ void extract(char *);
 void error(const char *msg) { perror(msg); exit(2); };
 
 int main() {
+
+    printf("%d\n", SYS);
+
     char url[MAXSIZE];
 
     // get the url

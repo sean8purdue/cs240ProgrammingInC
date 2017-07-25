@@ -70,6 +70,7 @@ void extract(char *url) {
         i++;
     }
     domain[i-len] = '\0';
-    printf("%s\n", domain);
+    /*printf("%s\n", domain);*/
+    printf("%u\n", (unsigned)strlen(head));
 
 }

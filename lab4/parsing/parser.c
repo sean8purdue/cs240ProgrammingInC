@@ -63,6 +63,13 @@ void extract(char *url) {
         i++;
     }
 
-    printf("%u\n", (unsigned)strlen(head));
+    unsigned int len = strlen(head);
+    /*printf("%d\n", i);*/
+    while ( url[i] != '/' ) {
+        domain[i-len] = url[i];
+        i++;
+    }
+    domain[i-len] = '\0';
+    printf("%s\n", domain);
 
 }

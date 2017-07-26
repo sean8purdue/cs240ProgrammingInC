@@ -32,6 +32,17 @@ This private repository is intended to practice C programming by Guo Li. Thanks 
 	
 - Basic file I/O
 
+- Scope of global vs. local variables and meaning of static variables
+
+- Function pointers, their use and application
+- Bit processing using AND, NOT (i.e., complement), and shift operations
+- system(), shells, and the basic structure of client/server programs
+- Role of fork() and exec-family calls
+- Dynamic memory allocation using malloc(), free(), stale memory
+- Programming with command-line arguments in main(), environment variables
+- Type conversion/casting
+- Composite data structures using struct, user defined types
+
 
 
 
@@ -42,16 +53,71 @@ This private repository is intended to practice C programming by Guo Li. Thanks 
 
 ## Labs
 
-### Lab1 Getting acquainted with C and its system environment
+### Lab1 Getting acquainted with C and its system environment (145 pts)
 
 The objective of this introductory lab is to familiarize you with the system environment of C programs under Linux.
+
+1- To verify your submission (e.g lab1), you can use the following command: `turnin -c cs240 -p lab1 -v`
 
 ### Lab2 Pointers, passing by value vs. reference, and 1-D arrays (205 pts)
 
 The objective of this lab is to practice using pointers as they are commonly used in passing by reference and manipulation of 1-D arrays.
 
-### Lab3 Programming using pointers, arrays, and strings
+
+
+### Lab3 Programming using pointers, arrays, and strings (220 pts)
 
 Practice pointers, arrays, strings and Makefile
 
+2- For problem 3 of lab3, you should use getc instead of getchar which returns a character from the specified FILE. From a usage standpoint, it's equivalent to the same fgetc() call, and fgetc() is a little more common to see.
 
+3- In Problem 3 of lab3, the main.c file must go in the directory named myencrypt
+
+### Lab4 Parsing bits and strings, static libraries, and system() (200 pts)
+
+The objective of this lab is to practice parsing input viewed as bits and strings. We will also employ system utilities commonly used with C programs such as archives for static linking and system() to execute legacy binaries from within an app.
+
+4- Sample expected output for problem 2 of lab4:   
+if the user enters 125:   
+
+```
+00000000000000000000000001111101   
+13, 0d   
+7, 07   
+0, 00   
+0, 00   
+0, 00   
+0, 00   
+0, 00   
+0, 00   
+or if the user enters 10334   
+00000000000000000010100001011110 
+14, 0e 
+5, 05 
+8, 08 
+2, 02 
+0, 00 
+0, 00 
+0, 00 
+0, 00 
+```
+
+Convert IP address to Integer representation:  
+An example for problem 3 of lab4:   
+IP address 73.176.165.217   
+IP address (Integer representation) 1236313561   
+In addition, you can use online convertors to convert an IP address in dotted decimal format to an integer (i.e. For testing purposes).
+
+### Lab5 Run-time Environment and Client/Server Programming in C (270 pts)
+
+The objective of this lab is to make further use of system utilities when developing C programs, get familiar with the run-time environment of C programs, and start writing C client/server apps which comprise the bulk of apps in use today.
+
+For problem 1 of lab 5:  
+To generate the executable file use the following command:   
+`gcc -o mymain main.o -L . -l mymathlib -lm`  
+before executing you need to set the environment variable from command line (not from the Makfile)    
+`export LD_LIBRARY_PATH=.`
+
+### Lab 6: Concurrent Client/Server Programs and Dynamic Memory Allocation (290 pts)
+
+The objective of this lab is to further develop concurrent client/server C programming skills and make use of dynamic memory allocation in Linux processes.

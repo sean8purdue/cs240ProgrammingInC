@@ -24,7 +24,9 @@ void error(const char *msg) { perror(msg); exit(2); };
 
 int main() {
 
-    printf("%d\n", SYS);
+    /*printf("%d\n", SYS);*/
+    // on mac: print 1
+    // on CS Data: print 3
 
     char url[MAXSIZE];
 
@@ -51,7 +53,7 @@ int main() {
 
 void extract(char *url) {
     char domain[MAXSIZE];
-    char *msg = "Header Format Wrong!";
+    const char *msg = "Header Format Wrong!";
 
     // catch NULL pointer
     if (url == NULL) { error("url is NULL"); }
@@ -67,6 +69,7 @@ void extract(char *url) {
         i++;
     }
 
+    // copy domain name from url to domain
     unsigned int len = strlen(head);
     /*printf("%d\n", i);*/
     while ( url[i] != '/' ) {
@@ -75,6 +78,35 @@ void extract(char *url) {
     }
     domain[i-len] = '\0';
     /*printf("%s\n", domain);*/
-    printf("%u\n", (unsigned)strlen(head));
 
+    // check subfix type: must be ".gov" or ".org"
+    int nDot = 0; // number of dot in domain name
+    int j = 0;
+    char subfix[MAXSIZE];
+    i = 0;
+    while ( domain[i] != '\0' ) {
+        if (domain[i] == '.') {
+            nDot++;
+        }
+        
+        if ( nDot == 3 ) {
+            subfix[j] = domain[i];
+            j++;
+        }
+
+        i++;
+    }
+    subfix[j] = '\0';
+    printf("%s\n", subfix);
+
+    const char *gov = ".gov";
+    const char *org = ".org";
+    i = 0;
+    while (subfix[i] != '\0') {
+        if ( subfix[i] == gov[i] || subfix[i] == org[i] ) {
+            i++;
+            continue;
+        }
+        error("subfix should be .org or gov");
+    }
 }

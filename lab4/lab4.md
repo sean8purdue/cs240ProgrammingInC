@@ -22,6 +22,8 @@ When we use printf and the begining address of url to print string. If the first
         } else {
 ```
 
+### b2: in part3.A.3
+
 ## Questions
 ### Q1. Best ways to parse url and detech ill format header.
 Part3.A.2
@@ -110,5 +112,29 @@ Note: nested `ifdef`
 ```
 
 ### Problem 3 (80 pts)
+
+Bugs: Always error, since subfix like ".org", will not equal to gov, even its equal to org.
+
+```c
+    while (subfix[i] != '\0') {
+        if ( subfix[i] != gov[i] || subfix[i] != org[i] ) {
+                error("subfix should be .org or gov");
+     		}
+     i++;
+    }
+
+```
+Correct:
+
+```c
+    while (subfix[i] != '\0') {
+        if ( subfix[i] == gov[i] || subfix[i] == org[i] ) {
+            i++;
+            continue;
+        }
+        error("subfix should be .org or gov");
+    }
+
+```
 
 ### Bonus Promblem (20 pts)

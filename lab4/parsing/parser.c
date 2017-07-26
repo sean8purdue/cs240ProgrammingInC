@@ -105,6 +105,10 @@ void extract(char *url, char *domain) {
     domain[i-len] = '\0';
     /*printf("%s\n", domain);*/
 
+    // skip check .org or .gov if domain begin with numbers
+    if ( domain[0] > 48 && domain[0] < 57 )
+        return;
+
     // check subfix type: must be ".gov" or ".org"
     int nDot = 0; // number of dot in domain name
     int j = 0;

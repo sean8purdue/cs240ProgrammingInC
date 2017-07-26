@@ -70,14 +70,20 @@ void extract(char *url) {
     }
 
     // copy domain name from url to domain
+    // except the characters afeter ':'
     unsigned int len = strlen(head);
     /*printf("%d\n", i);*/
     while ( url[i] != '/' ) {
+        // skip port nubmers after ':' in domain name
+        if (url[i] == ':') {
+            while ( url[i++] != '/' ) {} 
+            break;
+        }
         domain[i-len] = url[i];
         i++;
     }
     domain[i-len] = '\0';
-    /*printf("%s\n", domain);*/
+    printf("%s\n", domain);
 
     // check subfix type: must be ".gov" or ".org"
     int nDot = 0; // number of dot in domain name

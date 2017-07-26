@@ -19,7 +19,7 @@
 
 #define MAXSIZE 300
 
-void extract(char *);
+void extract(char *, char *);
 void error(const char *msg) { perror(msg); exit(2); };
 
 int main() {
@@ -29,6 +29,7 @@ int main() {
     // on CS Data: print 3
 
     char url[MAXSIZE];
+    char domain[MAXSIZE];
 
     // get the url
     int i = 0;
@@ -47,12 +48,31 @@ int main() {
     /*printf("%s\n", url);*/
 
     // extract the domain name or IP address
-    extract(url);
+    extract(url, domain);
+    printf("%s\n", domain);
+
+    // part3_B
+    char cmd[MAXSIZE];
+    cmd[0] = 'h';
+    cmd[1] = 'o';
+    cmd[2] = 's';
+    cmd[3] = 't';
+    cmd[4] = ' ';
+
+    i = 0;
+    while ( domain[i] != '\0' ) {
+        cmd[i+5] = domain[i];
+        i++;
+    }
+    cmd[i+5] = '\0';
+    printf("%s\n", cmd);
+
+    system(cmd);
+
 
 }
 
-void extract(char *url) {
-    char domain[MAXSIZE];
+void extract(char *url, char *domain) {
     const char *msg = "Header Format Wrong!";
 
     // catch NULL pointer
@@ -83,7 +103,7 @@ void extract(char *url) {
         i++;
     }
     domain[i-len] = '\0';
-    printf("%s\n", domain);
+    /*printf("%s\n", domain);*/
 
     // check subfix type: must be ".gov" or ".org"
     int nDot = 0; // number of dot in domain name

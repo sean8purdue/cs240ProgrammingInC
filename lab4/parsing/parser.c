@@ -101,10 +101,20 @@ void extract(char *url) {
 
     const char *gov = ".gov";
     const char *org = ".org";
-    i = 0;
-    while (subfix[i] != '\0') {
+
+    // cann't handle subfix with port number, such as ".org:901"
+    /*i = 0;*/
+    /*while (subfix[i] != '\0') {*/
+        /*if ( subfix[i] == gov[i] || subfix[i] == org[i] ) {*/
+            /*i++;*/
+            /*continue;*/
+        /*}*/
+        /*error("subfix should be .org or gov");*/
+    /*}*/
+
+    // new version
+    for (i = 0; i < 4; i++) {
         if ( subfix[i] == gov[i] || subfix[i] == org[i] ) {
-            i++;
             continue;
         }
         error("subfix should be .org or gov");

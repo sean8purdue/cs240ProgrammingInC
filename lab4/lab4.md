@@ -1,6 +1,32 @@
 # Lab 4: Parsing bits and strings, static libraries, and system() (200 pts)
 Due: 07/12/2017 (Wed), 11:59 PM
 
+## Bug
+
+### b1: in part3.A.2
+
+```c
+if ( (c >= 65) && (c <= 90) ) { //Upper to lower
+    c = c + 32;
+    url[i] = c;
+```
+If we put `url[i]` inside the loop, the character c will only be added to url[] when it's upper case!!
+
+When we use printf and the begining address of url to print string. If the first location of url is empty, we can't print anything, even there are some characters in the following locations. Correct is belowing:
+
+```c
+        if (i < (MAXSIZE - 1) ) {
+            //Upper to lower
+            if ( (c >= 65) && (c <= 90) ) { c = c + 32; }
+            url[i] = c;
+        } else {
+```
+
+### b2: in part3.A.3
+
+## Questions
+### Q1. Best ways to parse url and detech ill format header.
+Part3.A.2
 
 ## Objective 
 The objective of this lab is to practice parsing input viewed as bits and strings. We will also employ system utilities commonly used with C programs such as archives for static linking and system() to execute legacy binaries from within an app.
@@ -51,7 +77,64 @@ Since this is the case, we must ask the question: what is the decimal value corr
 
 The 1's complement is 0 1 1 1 1 1 1 12, or decimal 127. Since we must now add 1 to that, our conclusion is that the signed integer 1 0 0 0 0 0 0 02 must be equivalent to decimal -128!
 
+#### Predefined macros in GCC to detect system env
+Note: nested `ifdef`
+
+```c
+#ifdef _WIN32
+   //define something for Windows (32-bit and 64-bit, this part is common)
+   #ifdef _WIN64
+      //define something for Windows (64-bit only)
+   #else
+      //define something for Windows (32-bit only)
+   #endif
+#elif __APPLE__
+    #include "TargetConditionals.h"
+    #if TARGET_IPHONE_SIMULATOR
+         // iOS Simulator
+    #elif TARGET_OS_IPHONE
+        // iOS device
+    #elif TARGET_OS_MAC
+        // Other kinds of Mac OS
+    #else
+    #   error "Unknown Apple platform"
+    #endif
+#elif __linux__
+    // linux
+#elif __unix__ // all unices not caught above
+    // Unix
+#elif defined(_POSIX_VERSION)
+    // POSIX
+#else
+#   error "Unknown compiler"
+#endif
+
+```
 
 ### Problem 3 (80 pts)
+
+Bugs: Always error, since subfix like ".org", will not equal to gov, even its equal to org.
+
+```c
+    while (subfix[i] != '\0') {
+        if ( subfix[i] != gov[i] || subfix[i] != org[i] ) {
+                error("subfix should be .org or gov");
+     		}
+     i++;
+    }
+
+```
+Correct:
+
+```c
+    while (subfix[i] != '\0') {
+        if ( subfix[i] == gov[i] || subfix[i] == org[i] ) {
+            i++;
+            continue;
+        }
+        error("subfix should be .org or gov");
+    }
+
+```
 
 ### Bonus Promblem (20 pts)

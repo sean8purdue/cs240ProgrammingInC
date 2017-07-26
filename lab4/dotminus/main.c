@@ -14,10 +14,11 @@ int main() {
 
     // test for read_vectors
     /*printf("%d\n", size);*/
-    for (int i = 0; i < size; i++) { printf("x[%d] = %f\n", i, *(x+i)); }
-    for (int i = 0; i < size; i++) { printf("y[%d] = %f\n", i, *(y+i)); }
+    int i;
+    for (i = 0; i < size; i++) { printf("x[%d] = %f\n", i, *(x+i)); }
+    for (i = 0; i < size; i++) { printf("y[%d] = %f\n", i, *(y+i)); }
 
     calc_diff(size, x, y, u);
-    for (int i = 0; i < size; i++) { printf("x[%d] - y[%d] = %f\n", i, i, *(u+i)); }
+    for (i = 0; i < size; i++) { printf("x[%d] - y[%d] = %f\n", i, i, *(u+i)); }
 
 }

@@ -39,6 +39,11 @@ Due: 07/05/2017 (Wed), 11:59 PM
     // that starts at offset 13
 	```
 
+2. Makefile bug generating `.gch` file  
+	Files ending in `.gch` are precompiled headers - header files which have been pre-compiled in order to reduce compilation time when you (re)compile your main program.
+
+They are produced if you invoke the compiler with the header file itself as the target, ie:  
+`gcc myheader.h`
 
 
 ## Reading 

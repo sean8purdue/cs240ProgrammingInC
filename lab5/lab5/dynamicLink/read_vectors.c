@@ -20,6 +20,13 @@ int read_vectors(int *size, float *x, float *y) {
         fscanf(fp, "%f", (x+i));
     for (i = 0; i < *size; i++)
         fprintf(stdout, "%f ", *(x+i));
+    printf("\n");
+
+    // read vector y from file
+    for (i = 0; i < *size; i++)
+        fscanf(fp, "%f", (y+i));
+    for (i = 0; i < *size; i++)
+        fprintf(stdout, "%f ", *(y+i));
 
     printf("\n");
     fclose(fp);

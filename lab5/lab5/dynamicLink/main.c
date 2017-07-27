@@ -21,4 +21,7 @@ int main() {
     calc_diff(size, x, y, u);
     for (i = 0; i < size; i++) { printf("x[%d] - y[%d] = %f\n", i, i, *(u+i)); }
 
+    calc_power(size, x, y, u);
+    for (i = 0; i < size; i++) { printf("(x[%d] - y[%d])^2 = %f\n", i, i, *(u+i)); }
+
 }

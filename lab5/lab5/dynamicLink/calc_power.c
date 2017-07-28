@@ -1,5 +1,4 @@
-#include "dotheader.h"
-
+#include <math.h> //pow()
 
 void calc_power(int size, float *x , float *y, float *u) {
 

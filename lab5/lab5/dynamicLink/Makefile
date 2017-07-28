@@ -10,10 +10,10 @@ main.o: main.c dotheader.h
 read_vectors.o: read_vectors.c
 	gcc -c read_vectors.c -fPIC
 
-calc_diff.o: calc_diff.c dotheader.h
+calc_diff.o: calc_diff.c
 	gcc -c calc_diff.c -fPIC
 
-calc_power.o: calc_power.c dotheader.h
+calc_power.o: calc_power.c
 	gcc -c calc_power.c -fPIC
 
 calc_dotmag.o: calc_diff.c

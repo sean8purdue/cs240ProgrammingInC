@@ -1,4 +1,4 @@
-#include <math.h>
+#include <math.h> //sqrt()
 
 float calc_dotmag(int size, float *x, float *y, float *mgx, float *mgy) {
 

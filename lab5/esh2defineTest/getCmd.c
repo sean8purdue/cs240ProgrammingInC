@@ -1,6 +1,9 @@
 #include <stdio.h>
 
+
+#ifndef CMD
 #define CMD 50
+#endif
 
 void getCmd(char *cmd) {
     char c;

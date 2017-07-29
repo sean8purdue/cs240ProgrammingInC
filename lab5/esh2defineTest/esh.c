@@ -2,7 +2,10 @@
 #include <string.h>
 
 #define PROMPT 10
+
+#ifndef CMD
 #define CMD 100
+#endif
 
 void getCmd(char *);
 

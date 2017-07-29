@@ -23,6 +23,32 @@ The objective of this lab is to make further use of system utilities when develo
 
 `#define CMD 50` in `getCmd.c` file. No conflict. in file `getCmd.c` `CMD` is 50.
 
+3. \#ifndf test in getCmd.c
+
+```c
+in esh.c:
+#define CMD 100
+
+in getCmd.c: 
+#ifndef CMD
+#define CMD 50
+#endif
+```
+
+in `getCmd.c`, `CMD` is still 50, not 100 defined in `esh.c`.
+
+```c
+in esh.c:
+#ifndef CMD
+#define CMD 100
+#endif
+
+in getCmd.c: 
+#ifndef CMD
+#define CMD 50
+#endif
+```
+in `esh.c`, `CMD` is 100; in `getCmd.c`, `CMD` is still 50, not 100 defined in `esh.c`.
 
 
 

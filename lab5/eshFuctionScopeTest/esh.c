@@ -10,8 +10,12 @@ int main() {
     char promt[PROMPT];
     char cmd[CMD];
 
+    void functionScope();
+
     strcpy(promt, "$ ");
     /*printf("%s\n", promt);*/
+
+    functionScope();
 
     while (1) {
         printf("%s ", promt);
@@ -22,14 +26,21 @@ int main() {
 
     }
 
+
     
 }
 
 void getCmd(char *cmd) {
     char c;
     int i = 0;
+
+    functionScope();
+
     while ( (c = getchar()) != '\n' && (i < (CMD-1))   ) {
         cmd[i++] = c; 
     }
     cmd[i] = '\0';
+}
+void functionScope() {
+    printf("function scope test\n");
 }

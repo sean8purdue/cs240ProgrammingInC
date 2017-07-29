@@ -12,6 +12,7 @@ int main() {
     char promt[PROMPT];
     char cmd[CMD];
     char args[ARGC][CMD];
+    char **pArgs = (char **)args;
 
     strcpy(promt, "$ ");
     /*printf("%s\n", promt);*/
@@ -23,6 +24,7 @@ int main() {
         getCmd(cmd);
         printf("%s\n", cmd);
         /*lexer(cmd, (char **)args);*/
+        lexer(cmd, pArgs); 
 
     }
 
@@ -50,9 +52,11 @@ void lexer(char *cmd, char **args) {
         printf("%d\n", index);
 
         /*strncpy( (*args+i), cmd, 3);*/
+        strncpy( (*args+i), cmd, 3);
         strncpy(arg, cmd, index);
         printf("%s\n", arg);
         fflush(stdout);
+        printf("%s\n", args[i]);
 
         cmd = cmd + index + 1;
         printf("%s\n", cmd);

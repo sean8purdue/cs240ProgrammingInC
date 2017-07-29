@@ -1,6 +1,17 @@
 # Lab 5: Run-time Environment and Client/Server Programming in C (270 pts)
 Due: 07/19/2017 (Wed), 11:59 PM
 
+## Bug
+### bug1: Problem2.1 array of strings, char** and agrc[ARGC][CMD]
+
+Try to allocate array of strings, use `char agrc[ARGC][CMD]`, Wrong! Should use `char *argc[ARGC]`.
+
+`char agrc[ARGC][CMD]` means number of `ARGC * CMD` chars. Will cause **`SEGFAUT`** if use `strncpy( (*args+i), cmd, 3);`
+   
+`char *argc[ARGC]` means number of `ARGC` char pointers which point to `ARGC` strings.
+
+
+
 ## Objective 
 The objective of this lab is to make further use of system utilities when developing C programs, get familiar with the run-time environment of C programs, and start writing C client/server apps which comprise the bulk of apps in use today..
 

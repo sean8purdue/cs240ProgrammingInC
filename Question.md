@@ -17,3 +17,5 @@ This private repository is intended to practice C programming by Guo Li. Thanks 
 5\. Two dimensional array, `Struct Node ** PNode` in linked list.
 
 6\. #define, #ifdefine, in separate files (lab5/esh2defineTest)
+
+7\. function scope in one file (lab5/eshFunctionScopeTest)

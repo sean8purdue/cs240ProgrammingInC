@@ -3,12 +3,15 @@
 
 #define PROMPT 10
 #define CMD 100
+#define ARGC 20
 
 void getCmd(char *);
+void lexer(char *, char **);
 
 int main() {
     char promt[PROMPT];
     char cmd[CMD];
+    char args[ARGC][CMD];
 
     strcpy(promt, "$ ");
     /*printf("%s\n", promt);*/
@@ -19,6 +22,7 @@ int main() {
         // get user input string with getchar
         getCmd(cmd);
         printf("%s\n", cmd);
+        lexer(cmd, (char **)args);
 
     }
 
@@ -32,4 +36,13 @@ void getCmd(char *cmd) {
         cmd[i++] = c; 
     }
     cmd[i] = '\0';
+}
+
+void lexer(char *cmd, char **args) {
+    const char *ptr = strchr(cmd, ' ');
+    if (ptr) {
+        int index = ptr - cmd;
+        printf("%d\n", index);
+    }
+
 }

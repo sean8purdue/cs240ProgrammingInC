@@ -30,18 +30,19 @@ int main() {
     
 }
 
+void functionScope() {
+    printf("function scope test\n");
+}
+
 void getCmd(char *cmd) {
     char c;
     int i = 0;
 
     // error
-    /*functionScope();*/
+    functionScope();
 
     while ( (c = getchar()) != '\n' && (i < (CMD-1))   ) {
         cmd[i++] = c; 
     }
     cmd[i] = '\0';
-}
-void functionScope() {
-    printf("function scope test\n");
 }

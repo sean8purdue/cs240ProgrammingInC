@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#define CMD 60
 
 #ifndef CMD
 #define CMD 50

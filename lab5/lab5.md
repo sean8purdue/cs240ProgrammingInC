@@ -51,6 +51,19 @@ in getCmd.c:
 in `esh.c`, `CMD` is 100; in `getCmd.c`, `CMD` is still 50, not 100 defined in `esh.c`.
 
 
+```c
+in esh.c:
+#ifndef CMD
+#define CMD 100
+#endif
+
+in getCmd.c: 
+#define CMD 60
+#ifndef CMD
+#define CMD 50
+#endif
+```
+in `esh.c`, `CMD` is 100; in `getCmd.c`, `CMD` is still 60.
 
 
 

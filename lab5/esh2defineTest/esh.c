@@ -10,6 +10,8 @@ int main() {
     char promt[PROMPT];
     char cmd[CMD];
 
+    printf("%d", CMD);
+
     strcpy(promt, "$ ");
     /*printf("%s\n", promt);*/
 

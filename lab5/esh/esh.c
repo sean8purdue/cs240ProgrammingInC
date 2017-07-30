@@ -9,7 +9,7 @@
 
 
 void prompt(char *);
-void getCmd(char *);
+char * getCmd();
 void lexer(char *, int *, char **);
 
 int main() {
@@ -23,8 +23,8 @@ int main() {
 
         prompt(promt);
         // get user input string with getchar
-        getCmd(cmd);
-        /*DPRINTS(cmd);*/
+        cmd = getCmd(cmd);
+        DPRINTS(cmd);
         /*lexer(cmd, &argc, args);*/
 
     }
@@ -44,14 +44,16 @@ void prompt(char * promt) {
     fflush(stdout);
 }
 
-void getCmd(char *cmd) {
-    cmd = (char *) malloc( CMD * sizeof(char) );
+/*void getCmd(char *cmd) {*/
+char * getCmd() {
+    char * cmd = (char *) malloc( CMD * sizeof(char) );
     char c;
     int i = 0;
     while ( (c = getchar()) != '\n' && (i < (CMD-1))   ) {
         cmd[i++] = c; 
     }
     cmd[i] = '\0';
+    return cmd;
 }
 
 void lexer(char *cmd, int *argc, char **args) {

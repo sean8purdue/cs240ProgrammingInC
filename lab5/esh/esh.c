@@ -46,6 +46,7 @@ void lexer(char *cmd, char **args) {
     /*char *ptr = strchr(cmd, ' ');*/
     const char *ptr = strchr(cmd, ' ');
     if (ptr) {
+        // note: may not detect the second space in cmd;
         int index = ptr - cmd;
         printf("%d\n", index);
 

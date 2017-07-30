@@ -1,35 +1,51 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "debug.h"
+
 #define PROMPT 10
 #define CMD 100
 #define ARGC 20
 
+
+void prompt(char *);
 void getCmd(char *);
-void lexer(char *, char **);
+void lexer(char *, int *, char **);
 
 int main() {
-    char promt[PROMPT];
-    char cmd[CMD];
-    char args[ARGC][CMD];
-
-    strcpy(promt, "$ ");
-    /*printf("%s\n", promt);*/
+    char *promt;
+    char *cmd;
+    int argc = 0;
+    char **args;
+    args = (char **) malloc( ARGC * sizeof(char *) );
 
     while (1) {
-        printf("%s ", promt);
 
+        prompt(promt);
         // get user input string with getchar
         getCmd(cmd);
-        printf("%s\n", cmd);
-        /*lexer(cmd, (char **)args);*/
+        /*DPRINTS(cmd);*/
+        /*lexer(cmd, &argc, args);*/
 
     }
+        /*for (int i = 0; i <= argc; i++) {*/
+            /*DPRINTSD(args[i], i);*/
+            /*free(args[i]);*/
+        /*}*/
+        /*free(args);*/
+}
 
-    
+void prompt(char * promt) {
+    char promtA[PROMPT];
+    promt = promtA;
+
+    strcpy(promt, "$ ");
+    printf("%s ", promt);
+    fflush(stdout);
 }
 
 void getCmd(char *cmd) {
+    cmd = (char *) malloc( CMD * sizeof(char) );
     char c;
     int i = 0;
     while ( (c = getchar()) != '\n' && (i < (CMD-1))   ) {
@@ -38,28 +54,35 @@ void getCmd(char *cmd) {
     cmd[i] = '\0';
 }
 
-void lexer(char *cmd, char **args) {
-    int i = 0;
-    char arg[CMD] = "";
+void lexer(char *cmd, int *argc, char **args) {
+    const char *ptr;
+    
+    do {
+        ptr = strchr(cmd, ' ');
+        if (ptr) {
+            // note: may not detect the second space in cmd;
+            int index = ptr - cmd;
+            /*DPRINTD(index);*/
 
-    //char *ptr also works
-    /*char *ptr = strchr(cmd, ' ');*/
-    const char *ptr = strchr(cmd, ' ');
-    if (ptr) {
-        // note: may not detect the second space in cmd;
-        int index = ptr - cmd;
-        printf("%d\n", index);
 
-        /*strncpy( (*args+i), cmd, 3);*/
-        strncpy(arg, cmd, index);
-        printf("%s\n", arg);
-        fflush(stdout);
+            args[*argc] = (char *) malloc( (index + 1) * sizeof(char));
+            // memset(), fill args[i] with all '\0'
+            memset(args[*argc], '\0', sizeof(*args[*argc]) );
+            strncpy(args[*argc], cmd, index);
+            // add End of string in the end
+            /*args[i][index] = '\0';*/
+            (*argc)++;
 
-        cmd = cmd + index + 1;
-        printf("%s\n", cmd);
-        
-        
 
-    }
+            cmd = cmd + index + 1;
+            /*DPRINTS(cmd);*/
+        }
+
+    } while ( *argc < ARGC && ptr );
+
+    args[*argc] = (char *) malloc( (strlen(cmd)+1) * sizeof(char) );
+    memset(args[*argc], '\0', sizeof(*args[*argc]) );
+    DPRINTSD("argc:", *argc);
+    strcpy(args[*argc], cmd);
 
 }

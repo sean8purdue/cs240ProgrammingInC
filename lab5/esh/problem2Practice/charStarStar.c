@@ -9,7 +9,8 @@
 
 
 void getCmd(char *);
-void lexer(char *, int *, char * []);
+/*void lexer(char *, int *, char * []);*/
+void lexer(char *, int *, char **);
 
 int main() {
     char promt[PROMPT];
@@ -24,17 +25,19 @@ int main() {
 
     while (1) {
         printf("%s ", promt);
+        fflush(stdout);
 
         // get user input string with getchar
         getCmd(cmd);
         /*DPRINTS(cmd);*/
         lexer(cmd, &argc, args);
 
+    }
         for (int i = 0; i <= argc; i++) {
             DPRINTSD(args[i], i);
             free(args[i]);
         }
-    }
+        free(args);
 }
 
 void getCmd(char *cmd) {
@@ -46,7 +49,7 @@ void getCmd(char *cmd) {
     cmd[i] = '\0';
 }
 
-void lexer(char *cmd, int *argc, char *args[]) {
+void lexer(char *cmd, int *argc, char **args) {
     const char *ptr;
     
     do {

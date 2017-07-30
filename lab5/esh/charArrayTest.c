@@ -9,12 +9,13 @@
 
 
 void getCmd(char *);
-void lexer(char *, char * []);
+void lexer(char *, int *, char * []);
 
 int main() {
     char promt[PROMPT];
     char cmd[CMD];
     char *args[ARGC];
+    int argc = 0;
 
     strcpy(promt, "$ ");
     /*printf("%s\n", promt);*/
@@ -25,8 +26,10 @@ int main() {
         // get user input string with getchar
         getCmd(cmd);
         /*DPRINTS(cmd);*/
-        lexer(cmd, args);
-
+        lexer(cmd, &argc, args);
+        for (int i = 0; i <= argc; i++) {
+            DPRINTSD(args[i], i);
+        }
     }
     
 }
@@ -40,29 +43,35 @@ void getCmd(char *cmd) {
     cmd[i] = '\0';
 }
 
-void lexer(char *cmd, char *args[]) {
-    char arg[CMD] = "";
-    char args1[ARGC][CMD];
-    /*char *args1[CMD];*/
+void lexer(char *cmd, int *argc, char *args[]) {
+    const char *ptr;
+    
+    do {
+        ptr = strchr(cmd, ' ');
+        if (ptr) {
+            // note: may not detect the second space in cmd;
+            int index = ptr - cmd;
+            /*DPRINTD(index);*/
 
-    int i = 0;
 
-    const char *ptr = strchr(cmd, ' ');
-    if (ptr) {
-        // note: may not detect the second space in cmd;
-        int index = ptr - cmd;
-        DPRINTD(index);
+            args[*argc] = (char *) malloc( (index + 1) * sizeof(char));
+            // memset(), fill args[i] with all '\0'
+            memset(args[*argc], '\0', sizeof(*args[*argc]) );
+            strncpy(args[*argc], cmd, index);
+            // add End of string in the end
+            /*args[i][index] = '\0';*/
+            (*argc)++;
 
-        strncpy(arg, cmd, index);
-        DPRINTS(arg);
-        /*error("testError\n");*/
 
-        strncpy(args1[i], cmd, index);
-        args1[i][index] = '\0';
-        DPRINTS(args1[i]);
+            cmd = cmd + index + 1;
+            /*DPRINTS(cmd);*/
+        }
 
-        cmd = cmd + index + 1;
-        DPRINTS(cmd);
-    }
+    } while ( *argc < ARGC && ptr );
+
+    args[*argc] = (char *) malloc( (strlen(cmd)+1) * sizeof(char) );
+    memset(args[*argc], '\0', sizeof(*args[*argc]) );
+    DPRINTSD("argc:", *argc);
+    strcpy(args[*argc], cmd);
 
 }

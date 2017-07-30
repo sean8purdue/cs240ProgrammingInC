@@ -8,40 +8,39 @@
 #define ARGC 20
 
 
-void prompt(char *);
+char * prompt();
 char * getCmd();
+void clear(char *, char *, int *, char **);
 void lexer(char *, int *, char **);
 
 int main() {
-    char *promt;
-    char *cmd;
+    char *promt = NULL;
+    char *cmd = NULL;
+
     int argc = 0;
-    char **args;
+    char **args = NULL;
     args = (char **) malloc( ARGC * sizeof(char *) );
 
     while (1) {
 
-        prompt(promt);
+        promt = prompt();
         // get user input string with getchar
         cmd = getCmd(cmd);
-        DPRINTS(cmd);
+        /*DPRINTS(cmd);*/
         /*lexer(cmd, &argc, args);*/
 
     }
-        /*for (int i = 0; i <= argc; i++) {*/
-            /*DPRINTSD(args[i], i);*/
-            /*free(args[i]);*/
-        /*}*/
-        /*free(args);*/
 }
 
-void prompt(char * promt) {
-    char promtA[PROMPT];
-    promt = promtA;
-
+char * prompt() {
+    char * promt = (char *) malloc( (PROMPT+1) * sizeof(char) );
+    memset(promt, '\0', sizeof(*promt));
     strcpy(promt, "$ ");
+
     printf("%s ", promt);
     fflush(stdout);
+
+    return promt;
 }
 
 /*void getCmd(char *cmd) {*/
@@ -54,6 +53,19 @@ char * getCmd() {
     }
     cmd[i] = '\0';
     return cmd;
+}
+
+void clear(char *prompt, char *cmd, int *argc, char **args) {
+    free(prompt);
+    free(cmd);
+
+    for (int i = 0; i <= *argc; i++) {
+        /*DPRINTSD(args[i], i);*/
+        free(args[i]);
+    }
+    free(args);
+    *argc = 0;
+
 }
 
 void lexer(char *cmd, int *argc, char **args) {

@@ -29,9 +29,9 @@ int main() {
         lexer(cmd, &argc, args);
         for (int i = 0; i <= argc; i++) {
             DPRINTSD(args[i], i);
+            free(args[i]);
         }
     }
-    
 }
 
 void getCmd(char *cmd) {

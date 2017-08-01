@@ -8,9 +8,9 @@
 #define ARGC 20
 
 
-void pprompt(const char* prompt);
+char * prompt();
 char * getCmd();
-void clear(char *, int *, char **);
+void clear(char *, char *, int *, char **);
 char ** lexer(char *, int *);
 void run(int argc, const char **args, char *prompt);
 
@@ -18,28 +18,46 @@ void run(int argc, const char **args, char *prompt);
 void changePrompt(char *prompt, const char* newPrompt);
 
 int main() {
-    char prompt[CMD] = "$ ";
+    char *promt = NULL;
     char *cmd = NULL;
+
+    // test change string in subfuction changePrompt()
+    char pmt[10] = "$$ ";
+    strcpy(pmt, "&& ");
 
     int argc = 0;
     char **args = NULL;
 
     while (1) {
 
-        pprompt(prompt);
+        promt = prompt();
+        SP("first malloc:", promt);
         cmd = getCmd(cmd);
+        /*DPRINTS(cmd);*/
+    /*changePrompt(pmt, "&&  ");*/
+    /*S(pmt);*/
 
         args = lexer(cmd, &argc);
+/*#ifdef DEBUG*/
+        /*for(int i = 0; i <= argc; i++)*/
+            /*DS(i, args[i]);*/
+/*#endif*/
 
-        run(argc, (const char **)args, prompt);
+        run(argc, (const char **)args, promt);
 
-        clear(cmd, &argc, args);
+        clear(promt, cmd, &argc, args);
     }
 }
 
-void pprompt(const char *prompt) {
-    printf("%s ", prompt);
+char * prompt() {
+    char * promt = (char *) malloc( (PROMPT+1) * sizeof(char) );
+    memset(promt, '\0', sizeof(*promt));
+    strcpy(promt, "$ ");
+
+    printf("%s ", promt);
     fflush(stdout);
+
+    return promt;
 }
 
 char * getCmd() {
@@ -54,7 +72,8 @@ char * getCmd() {
     return cmd;
 }
 
-void clear(char *cmd, int *argc, char **args) {
+void clear(char *prompt, char *cmd, int *argc, char **args) {
+    free(prompt);
     free(cmd);
 
     for (int i = 0; i <= *argc; i++) {
@@ -99,14 +118,26 @@ char** lexer(char *cmd, int *argc) {
 }
 
 void run(int argc, const char **args, char *prompt) {
+        SP("in run:", prompt);
+
+/*#ifdef DEBUG*/
+    /*for(int i = 0; i <= argc; i++) {*/
+        /*DS(i, args[i]);*/
+    /*}*/
+/*#endif*/
 
     if ( strcmp(args[0], "cprt") == 0 ) {
-        // change prompt
         changePrompt(prompt, args[1]);
     }
+
 
 }
 
 void changePrompt(char *prompt, const char* newPrompt) {
+        SP("in changePrompt:", prompt);
+    /*S(prompt);*/
+    /*strcpy(prompt, "** ");*/
     strcpy(prompt, newPrompt);
+    /*S(prompt);*/
+    /*S(newPrompt);*/
 }

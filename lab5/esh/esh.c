@@ -12,7 +12,7 @@ char * prompt();
 char * getCmd();
 void clear(char *, char *, int *, char **);
 char ** lexer(char *, int *);
-/*char ** lexer(char *, int *, char **);*/
+void run(int argc, const char **args);
 
 int main() {
     char *promt = NULL;
@@ -26,12 +26,15 @@ int main() {
         promt = prompt();
         cmd = getCmd(cmd);
         /*DPRINTS(cmd);*/
-        args = lexer(cmd, &argc);
 
+        args = lexer(cmd, &argc);
 #ifdef DEBUG
         for(int i = 0; i <= argc; i++)
             DPRINTSD(args[i], i);
 #endif
+
+        run(argc, (const char **)args);
+
         clear(promt, cmd, &argc, args);
     }
 }
@@ -104,6 +107,15 @@ char** lexer(char *cmd, int *argc) {
     memset(args[*argc], '\0', sizeof(*args[*argc]) );
     /*DPRINTSD("argc:", *argc);*/
     strcpy(args[*argc], cmd);
+    strcpy(args[*argc], "stest");
 
     return args;
+}
+
+void run(int argc, const char **args) {
+    for(int i = 0; i <= argc; i++) {
+        fprintf(stderr, "%d   %s\n", i, args[i]);
+        // compile error, when try to modify `const char **args`
+        strcpy(args[i], "ssee");
+    }
 }

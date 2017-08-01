@@ -28,10 +28,10 @@ int main() {
         /*DPRINTS(cmd);*/
 
         args = lexer(cmd, &argc);
-#ifdef DEBUG
-        for(int i = 0; i <= argc; i++)
-            DPRINTSD(args[i], i);
-#endif
+/*#ifdef DEBUG*/
+        /*for(int i = 0; i <= argc; i++)*/
+            /*DS(i, args[i]);*/
+/*#endif*/
 
         run(argc, (const char **)args);
 
@@ -63,12 +63,10 @@ char * getCmd() {
 }
 
 void clear(char *prompt, char *cmd, int *argc, char **args) {
-    /*DPRINTD(*argc);*/
     free(prompt);
     free(cmd);
 
     for (int i = 0; i <= *argc; i++) {
-        /*DPRINTSD(args[i], i);*/
         free(args[i]);
     }
     free(args);
@@ -82,12 +80,11 @@ char** lexer(char *cmd, int *argc) {
     
     const char *ptr;
     do {
+        // get the index number of first space: "abc de", index = 3;
         ptr = strchr(cmd, ' ');
         if (ptr) {
             // note: may not detect the second space in cmd;
             int index = ptr - cmd;
-            /*DPRINTD(index);*/
-
 
             args[*argc] = (char *) malloc( (index + 1) * sizeof(char));
             // memset(), fill args[i] with all '\0'
@@ -98,24 +95,29 @@ char** lexer(char *cmd, int *argc) {
             (*argc)++;
 
             cmd = cmd + index + 1;
-            /*DPRINTS(cmd);*/
         }
 
     } while ( *argc < ARGC && ptr );
 
+    // copy last argument to args, since last word don't have space at the end
     args[*argc] = (char *) malloc( (strlen(cmd)+1) * sizeof(char) );
     memset(args[*argc], '\0', sizeof(*args[*argc]) );
-    /*DPRINTSD("argc:", *argc);*/
     strcpy(args[*argc], cmd);
-    strcpy(args[*argc], "stest");
 
     return args;
 }
 
 void run(int argc, const char **args) {
+
+#ifdef DEBUG
     for(int i = 0; i <= argc; i++) {
-        fprintf(stderr, "%d   %s\n", i, args[i]);
-        // compile error, when try to modify `const char **args`
-        strcpy(args[i], "ssee");
+        DS(i, args[i]);
     }
+#endif
+
+    if ( strcmp(args[0], "cprt") == 0 ) {
+        printf("he\n");
+    }
+
+
 }

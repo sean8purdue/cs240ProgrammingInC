@@ -20,7 +20,7 @@ The objective of this lab is to make further use of system utilities when develo
 
 ### Problem 1 (70 pts)
 
-- Double define in separate files (directory: esh2defineTest)
+#### 1 Double define in separate files (directory: esh2defineTest)
 
 `#define NAME "supereth"`  
 In your code `NAME` is not a variable. It's a pre-processor symbol, which means the text `NAME` will be replaced everywhere in the input with the string "supreeth". This happens per-file, so it doesn't make sense to talk about it being "external".
@@ -84,7 +84,11 @@ in getCmd.c:
 ```
 in `esh.c`, `CMD` is 100; in `getCmd.c`, `CMD` is still 60.
 
+#### 2 string compare to be equal in c
 
+```c
+    if ( strcmp(args[0], "cprt") == 0 ) {
+```
 
 ### Problem 2 (50 pts)
 

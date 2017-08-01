@@ -2,13 +2,15 @@
 #define DEBUG_H
 
 #ifdef DEBUG
-#define DPRINTS(s) fprintf(stderr, "%s\n", s)
-#define DPRINTD(d) fprintf(stderr, "%d\n", d)
-#define DPRINTSD(s,d) fprintf(stderr, "%s %d\n", s, d)
+#define S(s) fprintf(stderr, "%s\n", s)
+#define D(d) fprintf(stderr, "%d\n", d)
+#define DS(d,s) fprintf(stderr, "%d %s\n", d, s)
+#define SDS(s1,d,s2) fprintf(stderr, "%s %d %s\n", s1, d, s2)
 #else
-#define DPRINTS(s)
-#define DPRINTD(d)
-#define DPRINTSD(s,d)
+#define S(s)
+#define D(d)
+#define DS(s,d)
+#define SDS(s1,d,s2)
 #endif
 
 #include <stdlib.h> // exit

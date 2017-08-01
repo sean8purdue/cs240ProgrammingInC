@@ -11,7 +11,8 @@
 char * prompt();
 char * getCmd();
 void clear(char *, char *, int *, char **);
-void lexer(char *, int *, char **);
+char ** lexer(char *, int *);
+/*char ** lexer(char *, int *, char **);*/
 
 int main() {
     char *promt = NULL;
@@ -19,16 +20,19 @@ int main() {
 
     int argc = 0;
     char **args = NULL;
-    args = (char **) malloc( ARGC * sizeof(char *) );
 
     while (1) {
 
         promt = prompt();
-        // get user input string with getchar
         cmd = getCmd(cmd);
         /*DPRINTS(cmd);*/
-        /*lexer(cmd, &argc, args);*/
+        args = lexer(cmd, &argc);
 
+#ifdef DEBUG
+        for(int i = 0; i <= argc; i++)
+            DPRINTSD(args[i], i);
+#endif
+        clear(promt, cmd, &argc, args);
     }
 }
 
@@ -43,11 +47,11 @@ char * prompt() {
     return promt;
 }
 
-/*void getCmd(char *cmd) {*/
 char * getCmd() {
     char * cmd = (char *) malloc( CMD * sizeof(char) );
     char c;
     int i = 0;
+    // get user input string with getchar
     while ( (c = getchar()) != '\n' && (i < (CMD-1))   ) {
         cmd[i++] = c; 
     }
@@ -56,6 +60,7 @@ char * getCmd() {
 }
 
 void clear(char *prompt, char *cmd, int *argc, char **args) {
+    /*DPRINTD(*argc);*/
     free(prompt);
     free(cmd);
 
@@ -64,13 +69,15 @@ void clear(char *prompt, char *cmd, int *argc, char **args) {
         free(args[i]);
     }
     free(args);
+    args = NULL;
     *argc = 0;
 
 }
 
-void lexer(char *cmd, int *argc, char **args) {
-    const char *ptr;
+char** lexer(char *cmd, int *argc) {
+    char **args = (char **) malloc( ARGC * sizeof(char *) );
     
+    const char *ptr;
     do {
         ptr = strchr(cmd, ' ');
         if (ptr) {
@@ -87,7 +94,6 @@ void lexer(char *cmd, int *argc, char **args) {
             /*args[i][index] = '\0';*/
             (*argc)++;
 
-
             cmd = cmd + index + 1;
             /*DPRINTS(cmd);*/
         }
@@ -96,7 +102,8 @@ void lexer(char *cmd, int *argc, char **args) {
 
     args[*argc] = (char *) malloc( (strlen(cmd)+1) * sizeof(char) );
     memset(args[*argc], '\0', sizeof(*args[*argc]) );
-    DPRINTSD("argc:", *argc);
+    /*DPRINTSD("argc:", *argc);*/
     strcpy(args[*argc], cmd);
 
+    return args;
 }

@@ -12,11 +12,18 @@ char * prompt();
 char * getCmd();
 void clear(char *, char *, int *, char **);
 char ** lexer(char *, int *);
-void run(int argc, const char **args);
+void run(int argc, const char **args, char *prompt);
+
+// embeded command
+void changePrompt(char *prompt, const char* newPrompt);
 
 int main() {
     char *promt = NULL;
     char *cmd = NULL;
+
+    // test change string in subfuction changePrompt()
+    char pmt[10] = "$$ ";
+    strcpy(pmt, "&& ");
 
     int argc = 0;
     char **args = NULL;
@@ -24,8 +31,11 @@ int main() {
     while (1) {
 
         promt = prompt();
+        SP("first malloc:", promt);
         cmd = getCmd(cmd);
         /*DPRINTS(cmd);*/
+    /*changePrompt(pmt, "&&  ");*/
+    /*S(pmt);*/
 
         args = lexer(cmd, &argc);
 /*#ifdef DEBUG*/
@@ -33,7 +43,7 @@ int main() {
             /*DS(i, args[i]);*/
 /*#endif*/
 
-        run(argc, (const char **)args);
+        run(argc, (const char **)args, promt);
 
         clear(promt, cmd, &argc, args);
     }
@@ -107,17 +117,27 @@ char** lexer(char *cmd, int *argc) {
     return args;
 }
 
-void run(int argc, const char **args) {
+void run(int argc, const char **args, char *prompt) {
+        SP("in run:", prompt);
 
-#ifdef DEBUG
-    for(int i = 0; i <= argc; i++) {
-        DS(i, args[i]);
-    }
-#endif
+/*#ifdef DEBUG*/
+    /*for(int i = 0; i <= argc; i++) {*/
+        /*DS(i, args[i]);*/
+    /*}*/
+/*#endif*/
 
     if ( strcmp(args[0], "cprt") == 0 ) {
-        printf("he\n");
+        changePrompt(prompt, args[1]);
     }
 
 
+}
+
+void changePrompt(char *prompt, const char* newPrompt) {
+        SP("in changePrompt:", prompt);
+    /*S(prompt);*/
+    /*strcpy(prompt, "** ");*/
+    strcpy(prompt, newPrompt);
+    /*S(prompt);*/
+    /*S(newPrompt);*/
 }

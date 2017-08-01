@@ -6,11 +6,13 @@
 #define D(d) fprintf(stderr, "%d\n", d)
 #define DS(d,s) fprintf(stderr, "%d %s\n", d, s)
 #define SDS(s1,d,s2) fprintf(stderr, "%s %d %s\n", s1, d, s2)
+#define SP(s,p) fprintf(stderr, "%s %p\n", s, p)
 #else
 #define S(s)
 #define D(d)
 #define DS(s,d)
 #define SDS(s1,d,s2)
+#define SP(s,p)
 #endif
 
 #include <stdlib.h> // exit

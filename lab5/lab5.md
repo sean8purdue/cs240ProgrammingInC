@@ -10,7 +10,19 @@ Try to allocate array of strings, use `char agrc[ARGC][CMD]`, Wrong! Should use 
    
 `char *argc[ARGC]` means number of `ARGC` char pointers which point to `ARGC` strings.
 
+### bug2: changePrompt(char* prompt, const char* newPrompt)
 
+pass the char pointer to `changePrompt()`, and in this function change the prompt(in main) with `strcpy(prompt, newPrompt);
+
+Althrough we chance the value of `char * promt` in main, but we allocate a new value in `prompt()` . The old one was freed by `clear()'.
+
+```bash
+$  first malloc: 0x7f832a402600
+cprt ee
+in run: 0x7f832a402600 (we can see we pass the address of first malloc of char * to run and changePrompt)
+in changePrompt: 0x7f832a402600 (since we have the same address of `char * prompt` as  `char* promt` in main, we can change `promt` value use dereference.
+$  first malloc: 0x7f832a5000a0 **Bug** This is the second malloc prompt()!!!!!!
+```
 
 ## Objective 
 The objective of this lab is to make further use of system utilities when developing C programs, get familiar with the run-time environment of C programs, and start writing C client/server apps which comprise the bulk of apps in use today..

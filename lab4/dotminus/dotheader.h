@@ -3,6 +3,6 @@
 
 #define MAXSIZE 50
 
-int read_vectors(int *, float *, float *);
-void calc_diff(int, float *, float *, float *);
+extern int read_vectors(int *, float *, float *);
+extern void calc_diff(int, float *, float *, float *);
 

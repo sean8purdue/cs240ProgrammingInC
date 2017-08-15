@@ -11,10 +11,10 @@ main.o: main.c dotheader.h
 read_vectors.o: read_vectors.c
 	gcc -c read_vectors.c
 
-calc_diff.o: calc_diff.c dotheader.h
+calc_diff.o: calc_diff.c
 	gcc -c calc_diff.c
 
-calc_dotmag.o: calc_diff.c
+calc_dotmag.o: calc_dotmag.c
 	gcc -c calc_dotmag.c
 
 libmymath.a: calc_dotmag.o calc_diff.o read_vectors.o

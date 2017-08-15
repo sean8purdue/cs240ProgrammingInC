@@ -11,6 +11,9 @@ int main()
 {
 int *y;
 void my_int_handler(int);
+void my_int_handler2(int);
+
+   int x = 0;
 
   // register signal handler for CTRL-C with OS
   if (signal(SIGINT, my_int_handler) == SIG_ERR) {
@@ -19,6 +22,15 @@ void my_int_handler(int);
   }
 
   // program is infinite loop
+  scanf("%d", &x);
+  while (x == 1)
+      scanf("%d", &x);
+
+  if (signal(SIGINT, my_int_handler2) == SIG_ERR) {
+	fprintf(stderr, "signal handler2 registration failed\n");
+	exit(1);
+  }
+  printf("second hanlder\n");
   while(1);
 
 }
@@ -31,6 +43,18 @@ void my_int_handler(int sigval)
 
   if (sigval == SIGINT) {
 	printf("CTRL-C won't do\n");
+	return;
+  }
+
+  return;
+
+}
+
+void my_int_handler2(int sigval)
+{
+
+  if (sigval == SIGINT) {
+	printf("handler2: CTRL-C won't do\n");
 	return;
   }
 

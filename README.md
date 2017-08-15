@@ -33,7 +33,17 @@ This private repository is intended to practice C programming by Guo Li. Thanks 
 - Programming with command-line arguments in main(), environment variables
 - Type conversion/casting
 - Composite data structures using struct, user defined types
+- Using signal handlers/callback functions through function pointers
+- Application of enum, union, const
+- Programming functions with variable number of arguments such as printf()
 
+## Exams
+- Midterm: July 10 (Mon.), 2017, in-class; closed book/note. Sample midterm and solution: exam1, sol1 | exam2, sol2
+
+- The midterm has been graded. Please use the same procedure as before to check your total score (mid.rpt) and follow up with the TAs. Please come by my office hours to pick up the exam. Copy of midterm and solution: exam, sol
+- After picking up your midterm, please check your answer to Problem 3(b) pertaining to `*(*d+2)`. If your answer agrees with the posted solution but points were deducted, please contact Varshali Kumar. The solution sheet that I posted on July 18, 2017, had a mistake for `*(*d+2)`.
+
+- Final: August 3 (Thu.), 2017, 8-10am, KRAN G016; closed book/note. Sample final and solution: exam, sol
 
 
 

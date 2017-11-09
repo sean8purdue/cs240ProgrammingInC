@@ -5,6 +5,7 @@ ex8/ex8_v2
 *.swp
 
 # Object files
+a.out
 *.o
 *.ko
 *.obj
